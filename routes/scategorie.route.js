@@ -29,8 +29,8 @@ router.post('/', async (req, res) => {
 
 router.get('/', async (req, res) => {
     try {
-        await Scategorie.find()
-        res.status(200).json(sCategorie)
+      const scat=  await Scategorie.find()
+        res.status(200).json(scat)
     } catch (error) {
         res.status(404).json({message:error.message})
     }
