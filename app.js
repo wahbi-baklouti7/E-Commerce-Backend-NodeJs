@@ -21,11 +21,17 @@ const dotenv = require("dotenv")
 const categoriesRoute = require("./routes/categorie.route")
 const sCategoriesRoute = require("./routes/scategorie.route")
 const articleRoute = require("./routes/article.route")
+
+
+const cors= require('cors') /***************************** */
 dotenv.config()
 
 
 
 const app = express() // create express app
+
+app.use(cors()) // ******************************
+// app.use(express.static(__dirname+'/'))
 app.use(express.json())
 mongoose.connect(process.env.DB_CLOUD).then(() => console.log("Connected to MongoDB Cloud")).catch((err) => {
     console.log(err)

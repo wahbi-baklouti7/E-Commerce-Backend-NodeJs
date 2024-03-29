@@ -28,6 +28,27 @@ router.get('/', async (req, res) => {
         res.status(404).json({message:error.message})
     }
 })
+router.get('/:id', async (req, res) => {
+
+    const id = req.params.id;
+
+    try {
+        const art = await Article.findById(id)
+        res.status(200).json(art)
+    } catch (error) {
+        res.status(404).json({message:error.message})
+    }
+})
+
+router.delete('/:id', async (req, res) => {
+    const id = req.params.id;
+    try {
+        await Article.findByIdAndDelete(id)
+        res.status(200).json({message:"Article Deleted Successfully"})
+    } catch (error) {
+        res.status(404).json({message:error.message})
+    }
+})
 
 
 router.get('/pagination', async (res, req) => {
