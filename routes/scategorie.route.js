@@ -1,18 +1,8 @@
 const express = require("express");
-const ScategoryController = require("../controllers/sCategeryController.js")
-const router = express.Router()
+const ScategoryController = require("../controllers/sCategeryController.js");
+const router = express.Router();
+
+router.route("/").post(ScategoryController.createSCategory).get(ScategoryController.getAllScategories)
 
 
-
-
-
-router.post('/',ScategoryController.createSCategory )
-
-
-
-
-
-router.get('/',ScategoryController.getAllScategories )
-
-module.exports=router
-
+module.exports = router;
