@@ -1,6 +1,7 @@
 
 const express = require("express")
 const Article = require("../models/produit.js")
+const articleController= require("../controllers/articleController.js")
 const router = express.Router()
 
 
@@ -8,47 +9,14 @@ const router = express.Router()
 
 
 
-router.post("/", async (req, res) => {
-    const art = new Article(req.body)
-
-    try {
-        await art.save()
-        res.status(200).json(art)
-    } catch (error) {
-        res.status(404).json({message:error.message})
-    }
-})
+router.post("/", articleController.createArticle)
 
 
-router.get('/', async (req, res) => {
-    try {
-        const articles = await Article.find()
-        res.status(200).json(articles)
-    } catch (error) {
-        res.status(404).json({message:error.message})
-    }
-})
-router.get('/:id', async (req, res) => {
+router.get('/', articleController.getAllArticles)
 
-    const id = req.params.id;
+router.get('/:id',articleController.getArticleById )
 
-    try {
-        const art = await Article.findById(id)
-        res.status(200).json(art)
-    } catch (error) {
-        res.status(404).json({message:error.message})
-    }
-})
-
-router.delete('/:id', async (req, res) => {
-    const id = req.params.id;
-    try {
-        await Article.findByIdAndDelete(id)
-        res.status(200).json({message:"Article Deleted Successfully"})
-    } catch (error) {
-        res.status(404).json({message:error.message})
-    }
-})
+router.delete('/:id',articleController.deleteArticle )
 
 
 router.get('/pagination', async (res, req) => {

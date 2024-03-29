@@ -43,10 +43,6 @@ app.use(express.json()) // for parsing application/json
 
 
 // Routes 
-app.get("/", (req, res) => {
-    res.send("Hello World!")
-})
-
 app.use("/api/categories", categoriesRoute)
 app.use("/api/scategories", sCategoriesRoute)
 app.use("/api/articles",articleRoute)
